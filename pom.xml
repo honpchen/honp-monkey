@@ -10,12 +10,14 @@
   <version>1.0-SNAPSHOT</version>
   <modules>
     <module>honp-core</module>
+    <module>honp-wechat</module>
   </modules>
 
   <properties>
     <maven.compiler.source>11</maven.compiler.source>
     <maven.compiler.target>11</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <honp-monkey.version>1.0-SNAPSHOT</honp-monkey.version>
 
     <okhttp.version>4.9.3</okhttp.version>
     <jackson.version>2.13.4</jackson.version>
