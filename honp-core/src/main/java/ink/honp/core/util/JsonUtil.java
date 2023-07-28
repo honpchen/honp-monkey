@@ -59,7 +59,7 @@ public abstract class JsonUtil {
     /**
      * 对象转字符串
      * @param obj 对象
-     * @return json 字符串
+     * @return 错误返回空字符串 “”
      */
     public static String toStr(@NonNull Object obj) {
 
@@ -68,7 +68,7 @@ public abstract class JsonUtil {
         } catch (JsonProcessingException e) {
             log.warn("对象转字符串错误");
         }
-        return null;
+        return StringUtils.EMPTY;
     }
 
     /**
