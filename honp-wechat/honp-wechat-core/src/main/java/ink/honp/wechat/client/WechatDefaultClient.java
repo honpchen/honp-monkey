@@ -29,11 +29,15 @@ public class WechatDefaultClient implements WechatClient {
 
     private final WechatConfig wechatConfig;
 
-    protected WechatDefaultClient(WechatConfig wechatConfig) {
+    public WechatDefaultClient(WechatConfig wechatConfig) {
         this.wechatConfig = wechatConfig;
     }
 
-    
+    @Override
+    public WechatConfig getConfig() {
+        return wechatConfig;
+    }
+
     @Override
     public <T> T get(String url, Object params, Class<T> responseClz) throws WechatException {
         String content = execute(GET_EXECUTOR, url, params, true);
@@ -42,8 +46,23 @@ public class WechatDefaultClient implements WechatClient {
     }
 
     @Override
+    public <T> T get(String url, Object params, boolean requiredAccessToken, Class<T> responseClz) throws WechatException {
+
+        String content = execute(GET_EXECUTOR, url, params, requiredAccessToken);
+
+        return JsonUtil.toBean(content, responseClz);
+    }
+
+    @Override
     public <T> T post(String url, Object params, Class<T> responseClz) throws WechatException {
         String content = execute(POST_EXECUTOR, url, params, true);
+
+        return JsonUtil.toBean(content, responseClz);
+    }
+
+    @Override
+    public <T> T post(String url, Object params, boolean requiredAccessToken, Class<T> responseClz) throws WechatException {
+        String content = execute(POST_EXECUTOR, url, params, requiredAccessToken);
 
         return JsonUtil.toBean(content, responseClz);
     }

@@ -25,6 +25,14 @@ public abstract class WechatAbstractConfig implements WechatConfig {
             return accessToken();
         }
 
+        Lock accessTokenLock = getAccessTokenLock();
+        if (accessTokenLock == null) {
+            WechatTokenInfo tokenInfo = doGetAccessToken();
+            refreshAccessToken(tokenInfo);
+
+            return tokenInfo.getAccessToken();
+        }
+
         boolean isLock = false;
         try {
             do {

@@ -1,1 +1,0 @@
-package ink.honp.wechat.ma.entity.request;
